@@ -38,7 +38,7 @@ with DAG(
 
     task3 = PythonOperator(
         task_id='move_data',
-        python_callable=weather_extraction.move_data_s3
+        python_callable=weather_extraction.move_data_s3,
         op_kwargs={'api_url':'http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=8c34946f386e3da68c6ede01e504113e'}
     )
 

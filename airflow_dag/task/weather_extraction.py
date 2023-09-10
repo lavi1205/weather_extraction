@@ -1,8 +1,9 @@
 from datetime import timedelta, datetime
 import pandas as pd
 import requests
-import datetime
+import datetime 
 import boto3
+import pytz
 
 # url = "http://api.openweathermap.org/data/2.5/weather?"
 
@@ -64,15 +65,20 @@ def extract_data(api_url):
         transformed_data_list = [transformed_data]
         df = pd.DataFrame.from_dict(transformed_data_list)
         now = datetime.datetime.now() 
-        time_file_create = now.strftime("%d%m%Y")
+        # Define the desired time zone
+        desired_timezone = pytz.timezone('Etc/GMT+7')  # Replace with your desired time zone
+        # Convert the datetime object to the desired time zone
+        now_in_desired_timezone = now.astimezone(desired_timezone)
+        time_file_create = now_in_desired_timezone.strftime("%d%m%Y%H%M%S")
         file_name = 'Current_weather_data_' + time_file_create + '.csv'
-        print(type(file_name))
-        print(f'file containe weather data has been create with name{file_name}')
+        print(f'file containe weather data has been create with name {file_name}')
+        df.to_csv(file_name)
         return file_name
 
 def move_data_s3(api_url):
     # Initialize the S3 client
-    client = boto3.client('s3')
+    client = boto3.client('s3', aws_access_key_id='AKIA2EESKAGRR3BNPVNE',
+    aws_secret_access_key='Dq1gUJJBXphBkIxURQTPsxPi9N1AmvFLH/jJuyOZ')
     
     # Specify the S3 bucket name
     bucket_name = 'thinh123'  # Replace with your actual bucket name
@@ -86,4 +92,3 @@ def move_data_s3(api_url):
         bucket_name,
         file_name  # Specify the S3 object key (file name)
     )
-
