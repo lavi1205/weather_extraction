@@ -5039,3 +5039,17 @@ AttributeError: type object 'datetime.datetime' has no attribute 'datetime'
 [2023-09-10T18:37:43.017+0000] {logging_mixin.py:115} INFO - [2023-09-10T18:37:43.015+0000] {dag.py:2429} INFO - Sync 1 DAGs
 [2023-09-10T18:37:43.041+0000] {logging_mixin.py:115} INFO - [2023-09-10T18:37:43.040+0000] {dag.py:2981} INFO - Setting next_dagrun for weather_pipeline to None, run_after=None
 [2023-09-10T18:37:43.052+0000] {processor.py:161} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.416 seconds
+[2023-09-10T18:38:13.863+0000] {processor.py:153} INFO - Started process (PID=5993) to work on /opt/airflow/dags/weather_dag.py
+[2023-09-10T18:38:13.865+0000] {processor.py:640} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2023-09-10T18:38:13.865+0000] {logging_mixin.py:115} INFO - [2023-09-10T18:38:13.865+0000] {dagbag.py:508} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2023-09-10T18:38:14.218+0000] {processor.py:650} INFO - DAG(s) dict_keys(['weather_pipeline']) retrieved from /opt/airflow/dags/weather_dag.py
+[2023-09-10T18:38:14.246+0000] {logging_mixin.py:115} INFO - [2023-09-10T18:38:14.245+0000] {dag.py:2429} INFO - Sync 1 DAGs
+[2023-09-10T18:38:14.270+0000] {logging_mixin.py:115} INFO - [2023-09-10T18:38:14.270+0000] {dag.py:2981} INFO - Setting next_dagrun for weather_pipeline to None, run_after=None
+[2023-09-10T18:38:14.282+0000] {processor.py:161} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.422 seconds
+[2023-09-10T18:38:44.322+0000] {processor.py:153} INFO - Started process (PID=6056) to work on /opt/airflow/dags/weather_dag.py
+[2023-09-10T18:38:44.323+0000] {processor.py:640} INFO - Processing file /opt/airflow/dags/weather_dag.py for tasks to queue
+[2023-09-10T18:38:44.324+0000] {logging_mixin.py:115} INFO - [2023-09-10T18:38:44.323+0000] {dagbag.py:508} INFO - Filling up the DagBag from /opt/airflow/dags/weather_dag.py
+[2023-09-10T18:38:44.686+0000] {processor.py:650} INFO - DAG(s) dict_keys(['weather_pipeline']) retrieved from /opt/airflow/dags/weather_dag.py
+[2023-09-10T18:38:44.714+0000] {logging_mixin.py:115} INFO - [2023-09-10T18:38:44.712+0000] {dag.py:2429} INFO - Sync 1 DAGs
+[2023-09-10T18:38:44.737+0000] {logging_mixin.py:115} INFO - [2023-09-10T18:38:44.737+0000] {dag.py:2981} INFO - Setting next_dagrun for weather_pipeline to None, run_after=None
+[2023-09-10T18:38:44.749+0000] {processor.py:161} INFO - Processing /opt/airflow/dags/weather_dag.py took 0.431 seconds
