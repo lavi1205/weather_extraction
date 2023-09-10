@@ -21,26 +21,29 @@ with DAG(
     catchup=False,  # If set to True, backfill will be enabled
 ) as dag:
 
+    start_pipeline = DummyOperator(
+        task_id='START'
+    )
     # Create the first task using PythonOperator
-    task1 = PythonOperator(
+    check_api_available = PythonOperator(
         task_id='check_api_available',
         python_callable=weather_extraction.check_api_request,
         op_kwargs={'api_url':'http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=8c34946f386e3da68c6ede01e504113e'}
     )
     
     # Create the second task using PythonOperator
-    task2 = PythonOperator(
+    tranform_data = PythonOperator(
         task_id='tranform_data',
         python_callable=weather_extraction.extract_data,
         op_kwargs={'api_url':'http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=8c34946f386e3da68c6ede01e504113e'}
     )
     # Move data to S3
 
-    task3 = PythonOperator(
+    move_data = PythonOperator(
         task_id='move_data',
         python_callable=weather_extraction.move_data_s3,
         op_kwargs={'api_url':'http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=8c34946f386e3da68c6ede01e504113e'}
     )
 
     # Set task dependencies
-    task1 >> task2 >> task3
+    start_pipeline >> check_api_available >> tranform_data >> move_data
