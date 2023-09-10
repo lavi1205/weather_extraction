@@ -2,6 +2,7 @@ from datetime import timedelta, datetime
 import pandas as pd
 import requests
 import datetime
+import boto3
 
 # url = "http://api.openweathermap.org/data/2.5/weather?"
 
@@ -9,7 +10,7 @@ import datetime
 
 # city = 'London'
 # weather_url = url + 'appid=' + api_key + '&q=' + city
-response = requests.get('http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=8c34946f386e3da68c6ede01e504113e').json()
+
 
 def convert_temperature(kelvin):
     celsius = (kelvin - 273.15) 
@@ -35,7 +36,8 @@ def check_api_request(api_url):
 
 
 
-def extract_data():
+def extract_data(api_url):
+    response = requests.get(api_url).json()
     for key in response:
         city = response.get('name')
         temperature       = round(convert_temperature(int(response.get('main').get('temp'))),2)
@@ -63,10 +65,25 @@ def extract_data():
         df = pd.DataFrame.from_dict(transformed_data_list)
         now = datetime.datetime.now() 
         time_file_create = now.strftime("%d%m%Y")
-        file_name = 'Current_weather_data_' + time_file_create
-        df.to_csv(file_name+'.csv',index=False)
+        file_name = 'Current_weather_data_' + time_file_create + '.csv'
+        print(type(file_name))
+        print(f'file containe weather data has been create with name{file_name}')
+        return file_name
 
-def move_data_s3():
-    pass
-check_api_request('http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=8c34946f386e3da68c6ede01e504113e')
+def move_data_s3(api_url):
+    # Initialize the S3 client
+    client = boto3.client('s3')
+    
+    # Specify the S3 bucket name
+    bucket_name = 'thinh123'  # Replace with your actual bucket name
+    
+    # Call the extract_data function to get the file name
+    file_name = extract_data(api_url)
+    
+    # Upload the file to S3
+    response = client.upload_file(
+        file_name,  # Use the file name returned by extract_data
+        bucket_name,
+        file_name  # Specify the S3 object key (file name)
+    )
 
