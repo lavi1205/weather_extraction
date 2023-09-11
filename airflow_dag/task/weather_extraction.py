@@ -81,8 +81,8 @@ def extract_data(api_url):
 def move_data_s3(api_url):
     try:
         # Initialize the S3 client
-        client = boto3.client('s3', aws_access_key_id='AKIA2EESKAGRR3BNPVNE',
-        aws_secret_access_key='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')
+        client = boto3.client('s3', aws_access_key_id='',
+        aws_secret_access_key='')
         
         # Specify the S3 bucket name
         bucket_name = 'thinh123'  # Replace with your actual bucket name
