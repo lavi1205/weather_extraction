@@ -4,12 +4,12 @@
 
 This Airflow ETL (Extract, Transform, Load) process is designed to retrieve weather data from the OpenWeatherMap API, transform it into a structured format, and load it into a CSV file. Users are required to provide their name and email address to receive automated notifications regarding the data extraction process. The ETL process is split into several functions, each serving a specific purpose.
 
-## User Information
+## Author Information
 
-Before running the ETL process, please provide your name and email address:
+Name and email address:
 
-- **Name**: [Your Name]
-- **Email**: [Your Email]
+- **Name**: Pham The Thinh
+- **Email**: thinhphamthe874@gmail.com
 
 ## Functions
 
