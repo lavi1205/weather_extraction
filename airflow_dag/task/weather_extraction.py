@@ -5,14 +5,6 @@ import datetime
 import boto3
 import pytz
 
-# url = "http://api.openweathermap.org/data/2.5/weather?"
-
-# api_key = "8c34946f386e3da68c6ede01e504113e"
-
-# city = 'London'
-# weather_url = url + 'appid=' + api_key + '&q=' + city
-
-
 def convert_temperature(kelvin):
     celsius = (kelvin - 273.15) 
     return(celsius)
